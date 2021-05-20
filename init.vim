@@ -102,6 +102,11 @@ Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 " ==================== nerdtree settings ====================
