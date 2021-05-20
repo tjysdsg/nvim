@@ -1,3 +1,4 @@
+set nocompatible
 set termguicolors
 
 set expandtab
@@ -21,7 +22,8 @@ set wildignore=*.swp,*.pyc
 set visualbell
 set noerrorbells
 set undofile
-" no swapfile or backup cuz I've got git
+
+" no swapfile or backup
 set nobackup
 set noswapfile
 
@@ -45,8 +47,9 @@ set timeoutlen=500   " default value
 set ttimeout          " for key codes
 set ttimeoutlen=10    " unnoticeable small value
 
-" keymaps
+" leader key is comma
 let mapleader = ','
+
 " real delete (not cut)
 nnoremap <leader>x "_d
 xnoremap <leader>x "_d
@@ -86,26 +89,38 @@ set nu rnu
 
 set t_Co=256
 
+let g:solarized_italics = v:false
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin(stdpath('data'))
 
+" file tree
 Plug 'preservim/nerdtree'
 
+" color scheme
 Plug 'ishan9299/nvim-solarized-lua'
 
+" treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+" tabbar
 Plug 'romgrk/barbar.nvim'
 
+" git diff
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
+" doc generation
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
+" status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" lanugage pack
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
