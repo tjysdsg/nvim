@@ -99,6 +99,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 
 Plug 'romgrk/barbar.nvim'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+
 call plug#end()
 
 " ==================== nerdtree settings ====================
@@ -175,3 +178,7 @@ let bufferline = get(g:, 'bufferline', {})
 let bufferline.animation = v:false
 " disable icons
 let bufferline.icons = v:false
+
+" ==================== gitsigns ====================
+lua require('gitsigns').setup()
+
