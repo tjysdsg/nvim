@@ -21,7 +21,6 @@ set wildignore=*.swp,*.pyc
 set visualbell
 set noerrorbells
 set undofile
-set undodir=~/.vim/undodir
 " no swapfile or backup cuz I've got git
 set nobackup
 set noswapfile
@@ -37,8 +36,8 @@ syntax on
 filetype indent on
 filetype on
 filetype plugin on
-" fold using syntax
-set foldmethod=syntax
+" set foldmethod=syntax
+
 
 " timeout for better leader-key
 set timeout           " for mappings
@@ -94,7 +93,11 @@ call plug#begin(stdpath('data'))
 
 Plug 'mcchrish/nnn.vim'
 
-Plug 'overcache/NeoSolarized'
+Plug 'ishan9299/nvim-solarized-lua'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
+Plug 'romgrk/barbar.nvim'
 
 call plug#end()
 
@@ -106,5 +109,68 @@ nnoremap <silent> <leader>nn :NnnPicker<CR>
 let g:nnn#layout = { 'left': '~20%' } " or right, up, down
 
 " ==================== color scheme ====================
-colorscheme NeoSolarized
+colorscheme solarized-high
 set background=dark
+
+" ==================== treesitter ====================
+" highlighting
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+  },
+}
+EOF
+
+" incremental selection
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
+" folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" ==================== barber ====================
+" " Move to previous/next
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <A-w> :BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout<CR>
+" Close commands
+"                          :BufferCloseAllButCurrent<CR>
+"                          :BufferCloseBuffersLeft<CR>
+"                          :BufferCloseBuffersRight<CR>
+" Magic buffer-picking mode
+    " nnoremap <silent> <C-s>    :BufferPick<CR>
+
+" disable animations
+let bufferline.animation = v:false
