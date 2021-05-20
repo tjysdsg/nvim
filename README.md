@@ -1,0 +1,4 @@
+# Prerequisites
+
+- neovim
+- nnn

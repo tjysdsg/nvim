@@ -1,3 +1,5 @@
+set termguicolors
+
 set expandtab
 set autoindent
 set tabstop=4
@@ -84,3 +86,25 @@ set number relativenumber
 set nu rnu
 
 set t_Co=256
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin(stdpath('data'))
+
+Plug 'mcchrish/nnn.vim'
+
+Plug 'overcache/NeoSolarized'
+
+call plug#end()
+
+" ==================== nnn settings ====================
+" Disable default mappings
+let g:nnn#set_default_mappings = 0
+" <leader>+nn to open nnn
+nnoremap <silent> <leader>nn :NnnPicker<CR>
+let g:nnn#layout = { 'left': '~20%' } " or right, up, down
+
+" ==================== color scheme ====================
+colorscheme NeoSolarized
+set background=dark
