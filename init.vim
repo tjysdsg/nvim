@@ -91,7 +91,7 @@ set t_Co=256
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin(stdpath('data'))
 
-Plug 'mcchrish/nnn.vim'
+Plug 'preservim/nerdtree'
 
 Plug 'ishan9299/nvim-solarized-lua'
 
@@ -101,12 +101,10 @@ Plug 'romgrk/barbar.nvim'
 
 call plug#end()
 
-" ==================== nnn settings ====================
-" Disable default mappings
-let g:nnn#set_default_mappings = 0
-" <leader>+nn to open nnn
-nnoremap <silent> <leader>nn :NnnPicker<CR>
-let g:nnn#layout = { 'left': '~20%' } " or right, up, down
+" ==================== nerdtree settings ====================
+" nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " ==================== color scheme ====================
 colorscheme solarized-high
@@ -172,5 +170,8 @@ nnoremap <silent>    <A-w> :BufferClose<CR>
 " Magic buffer-picking mode
     " nnoremap <silent> <C-s>    :BufferPick<CR>
 
+let bufferline = get(g:, 'bufferline', {})
 " disable animations
 let bufferline.animation = v:false
+" disable icons
+let bufferline.icons = v:false

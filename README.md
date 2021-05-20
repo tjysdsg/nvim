@@ -1,4 +1,3 @@
 # Prerequisites
 
-- neovim
-- nnn
+- neovim >= 0.5
