@@ -1,5 +1,4 @@
 set nocompatible
-set termguicolors
 
 set expandtab
 set autoindent
@@ -102,25 +101,8 @@ Plug 'preservim/nerdtree'
 " color scheme
 Plug 'ishan9299/nvim-solarized-lua'
 
-" treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
 " tabbar
 Plug 'romgrk/barbar.nvim'
-
-" git diff
-Plug 'nvim-lua/plenary.nvim'
-Plug 'lewis6991/gitsigns.nvim'
-
-" doc generation
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
-
-" status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" lanugage pack
-Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -132,39 +114,7 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 " ==================== color scheme ====================
 colorscheme solarized-high
 set background=dark
-
-" ==================== treesitter ====================
-" highlighting
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
-  },
-}
-EOF
-
-" incremental selection
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-}
-EOF
-" folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-
+set termguicolors
 " ==================== barber ====================
 " " Move to previous/next
 nnoremap <silent>    <A-,> :BufferPrevious<CR>
@@ -198,7 +148,4 @@ let bufferline = get(g:, 'bufferline', {})
 let bufferline.animation = v:false
 " disable icons
 let bufferline.icons = v:false
-
-" ==================== gitsigns ====================
-lua require('gitsigns').setup()
 
