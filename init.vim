@@ -99,9 +99,6 @@ call plug#begin(stdpath('data'))
 " file tree
 Plug 'preservim/nerdtree'
 
-" color scheme
-Plug 'ishan9299/nvim-solarized-lua'
-
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
@@ -115,10 +112,6 @@ Plug 'lewis6991/gitsigns.nvim'
 " doc generation
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
-" status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 " lanugage pack
 Plug 'sheerun/vim-polyglot'
 
@@ -130,7 +123,7 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 " nnoremap <C-f> :NERDTreeFind<CR>
 
 " ==================== color scheme ====================
-colorscheme solarized-high
+" colorscheme solarized-high
 set background=dark
 
 " ==================== treesitter ====================
