@@ -1,5 +1,4 @@
 set nocompatible
-set termguicolors
 
 set expandtab
 set autoindent
@@ -125,39 +124,7 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 " ==================== color scheme ====================
 " colorscheme solarized-high
 set background=dark
-
-" ==================== treesitter ====================
-" highlighting
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
-  },
-}
-EOF
-
-" incremental selection
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-}
-EOF
-" folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-
+set termguicolors
 " ==================== barber ====================
 " " Move to previous/next
 nnoremap <silent>    <A-,> :BufferPrevious<CR>
@@ -191,7 +158,4 @@ let bufferline = get(g:, 'bufferline', {})
 let bufferline.animation = v:false
 " disable icons
 let bufferline.icons = v:false
-
-" ==================== gitsigns ====================
-lua require('gitsigns').setup()
 
