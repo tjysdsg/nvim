@@ -46,29 +46,11 @@ set timeoutlen=500   " default value
 set ttimeout          " for key codes
 set ttimeoutlen=10    " unnoticeable small value
 
-" leader key is comma
-let mapleader = ','
-
-" real delete (not cut)
-nnoremap <leader>x "_d
-xnoremap <leader>x "_d
-
-" save file with <leader>+s
-nnoremap <leader>s :w<enter>
-
-" switching between tabs using <leader>+a and d
-nnoremap <leader>d :bnext<enter>
-nnoremap <leader>a :bNext<enter>
+" leader key is space
+let mapleader = " "
 
 " save as root using <leader>+shift+s
 nnoremap <leader>S :w !sudo tee %<enter>
-
-" source vimrc using <leader>+v
-nnoremap <leader>v :source $MYVIMRC<cr>
-
-" Use Q for formatting the current paragraph (or selection)
-vmap Q gq
-nmap Q gqap
 
 " easy window navigation
 map <C-h> <C-w>h
@@ -99,7 +81,7 @@ call plug#begin(stdpath('data'))
 Plug 'preservim/nerdtree'
 
 " treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " tabbar
 Plug 'romgrk/barbar.nvim'
@@ -127,11 +109,6 @@ set background=dark
 set termguicolors
 " ==================== barber ====================
 " " Move to previous/next
-nnoremap <silent>    <A-,> :BufferPrevious<CR>
-nnoremap <silent>    <A-.> :BufferNext<CR>
-" Re-order to previous/next
-nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
-nnoremap <silent>    <A->> :BufferMoveNext<CR>
 " Goto buffer in position...
 nnoremap <silent>    <A-1> :BufferGoto 1<CR>
 nnoremap <silent>    <A-2> :BufferGoto 2<CR>
@@ -153,9 +130,15 @@ nnoremap <silent>    <A-w> :BufferClose<CR>
 " Magic buffer-picking mode
     " nnoremap <silent> <C-s>    :BufferPick<CR>
 
-let bufferline = get(g:, 'bufferline', {})
-" disable animations
-let bufferline.animation = v:false
-" disable icons
-let bufferline.icons = v:false
+let g:barbar_auto_setup = v:false " disable auto-setup
+lua << EOF
+require'barbar'.setup {
+  animation = true,
+  icons = { filetype = { enabled = false } },
+}
+EOF
+
+" switching between tabs using <leader>+. and ,
+nnoremap <leader>.  :bnext<enter>
+nnoremap <leader>,  :bNext<enter>
 
