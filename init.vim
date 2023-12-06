@@ -84,14 +84,15 @@ Plug 'preservim/nerdtree'
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " tabbar
-Plug 'romgrk/barbar.nvim'
+" TODO: barber is broken for now
+" Plug 'romgrk/barbar.nvim'
 
 " git diff
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
 " doc generation
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " lanugage pack
 Plug 'sheerun/vim-polyglot'
@@ -130,13 +131,15 @@ nnoremap <silent>    <A-w> :BufferClose<CR>
 " Magic buffer-picking mode
     " nnoremap <silent> <C-s>    :BufferPick<CR>
 
-let g:barbar_auto_setup = v:false " disable auto-setup
-lua << EOF
-require'barbar'.setup {
-  animation = true,
-  icons = { filetype = { enabled = false } },
-}
-EOF
+" TODO: barber is broken for now
+" let g:barbar_auto_setup = v:false " disable auto-setup
+" lua << EOF
+" require'barbar'.setup {
+"   animation = true,
+"   icons = { filetype = { enabled = false } },
+" }
+" EOF
+
 
 " switching between tabs using <leader>+. and ,
 nnoremap <leader>.  :bnext<enter>
