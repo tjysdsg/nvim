@@ -21,6 +21,7 @@ set wildignore=*.swp,*.pyc
 set visualbell
 set noerrorbells
 set undofile
+set mouse-=a
 
 " no swapfile or backup
 set nobackup
